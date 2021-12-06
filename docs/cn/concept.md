@@ -26,7 +26,7 @@ RocketMQ主要由 Producer、Broker、Consumer 三部分组成，其中Producer 
  Consumer消费的一种类型，该模式下Broker收到数据后会主动推送给消费端，该消费模式一般实时性较高。
  
 ## 9 生产者组（Producer Group）
-  同一类Producer的集合，这类Producer发送同一类消息且发送逻辑一致。如果发送的是事物消息且原始生产者在发送之后崩溃，则Broker服务器会联系同一生产者组的其他生产者实例以提交或回溯消费。
+  同一类Producer的集合，这类Producer发送同一类消息且发送逻辑一致。如果发送的是事务消息且原始生产者在发送之后崩溃，则Broker服务器会联系同一生产者组的其他生产者实例以提交或回溯消费。
   
 ## 10 消费者组（Consumer Group）
   同一类Consumer的集合，这类Consumer通常消费同一类消息且消费逻辑一致。消费者组使得在消息消费方面，实现负载均衡和容错的目标变得非常容易。要注意的是，消费者组的消费者实例必须订阅完全相同的Topic。RocketMQ 支持两种消息模式：集群消费（Clustering）和广播消费（Broadcasting）。
@@ -38,7 +38,7 @@ RocketMQ主要由 Producer、Broker、Consumer 三部分组成，其中Producer 
 广播消费模式下，相同Consumer Group的每个Consumer实例都接收全量的消息。
 
 ## 13 普通顺序消息（Normal Ordered Message）
-普通顺序消费模式下，消费者通过同一个消费队列收到的消息是有顺序的，不同消息队列收到的消息则可能是无顺序的。
+普通顺序消费模式下，消费者通过同一个消息队列（ Topic 分区，称作 Message Queue） 收到的消息是有顺序的，不同消息队列收到的消息则可能是无顺序的。
 
 ## 14 严格顺序消息（Strictly Ordered Message）
 严格顺序消息模式下，消费者收到的所有消息均是有顺序的。
